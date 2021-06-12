@@ -11,6 +11,9 @@
     </nav>
 
     <h1>Topics</h1>
-
+    {%for topic in topics%}
+        <h2>{{ topic.text }}</h2>
+        <em>{{ topic.date_added }}</em>
+    {%endfor%}
 </body>
 </html>
