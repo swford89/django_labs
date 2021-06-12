@@ -1,4 +1,4 @@
-You added an `topics` view to the learning log app that should display the a list of all your learning log topics. However, there's no data showing up.
+You added a `topics` view to the learning log app that should display a list of all your learning log topics. However, there's no data showing up.
 
 <div class='alert alert-info' role='alert'>
     <strong>Info:</strong> You can either create new data or copy the <code>db.sqlite3</code> file from the previous exercise and work with the data you inputted there.
