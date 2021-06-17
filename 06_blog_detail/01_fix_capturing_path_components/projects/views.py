@@ -4,9 +4,11 @@ from .models import Project
 
 def index(request):
     projects = Project.objects.all()
-    return render(request, 'projects/index.html', {'projects': projects})
+    context = {'projects': projects}
+    return render(request, 'projects/index.html', context)
 
 
-def detail(request):
-    project = Project.objects.get(pk=100)
-    return render(request, 'projects/detail.html', {'project': project})
+def detail(request, pk):
+    project = Project.objects.get(pk=pk )
+    context = {'project': project}
+    return render(request, 'projects/detail.html', context)
