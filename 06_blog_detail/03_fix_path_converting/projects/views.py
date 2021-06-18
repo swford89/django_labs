@@ -4,9 +4,16 @@ from .models import Project
 
 def index(request):
     projects = Project.objects.all()
-    return render(request, 'projects/index.html', {'projects': projects})
+    context = {'projects': projects}
+    return render(request, 'projects/index.html', context)
 
 
-def detail(request, pk):
+def detail_pk(request, pk):
     project = Project.objects.get(pk=pk)
-    return render(request, 'projects/detail.html', {'project': project})
+    context = {'project': project}
+    return render(request, 'projects/detail.html', context)
+
+def detail_slug(request, slug):
+    project = Project.objects.get(slug=slug)
+    context = {'project': project}
+    return render(request, 'projects/detail.html', context)
