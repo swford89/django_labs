@@ -1,3 +1,5 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.http.response import Http404
 from django.shortcuts import render
 from .models import Project
 
@@ -7,13 +9,10 @@ def index(request):
     context = {'projects': projects}
     return render(request, 'projects/index.html', context)
 
-
-def detail_pk(request, pk):
-    project = Project.objects.get(pk=pk)
-    context = {'project': project}
-    return render(request, 'projects/detail.html', context)
-
 def detail_slug(request, slug):
-    project = Project.objects.get(slug=slug)
+    try:
+        project = Project.objects.get(slug=slug)
+    except ObjectDoesNotExist:
+        raise Http404
     context = {'project': project}
     return render(request, 'projects/detail.html', context)
