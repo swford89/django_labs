@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from djeeterprofile.forms import SignupForm, SigninForm
 from djeet.models import Djeet
 
@@ -53,12 +55,10 @@ def profile(request, username):
         # TODO: this is one area where you need to fix form submission
         if request.method == 'POST':
 
-            djeet.user = request.user
-            djeet.save()
+            some_djeet = Djeet(user=user, body=request.POST['redirect'])
+            some_djeet.save()
 
-            redirecturl = request.POST.get('redirect', '/')
-
-            return redirect(redirecturl)
+            return HttpResponseRedirect(reverse('profile', args=(user,)))
         else:
             return render(request, 'profile.html', {'user': user})
         # end of form-related code you need to worry about
