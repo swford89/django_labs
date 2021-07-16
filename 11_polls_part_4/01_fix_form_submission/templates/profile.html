@@ -62,8 +62,9 @@
         {% endif %}
 
         <!-- TODO: fix the form submission code here -->
-        <form action="/{{ request.user.username }}/" method="">
-            <input type="hidden" value="{{ request.path }}" name="redirect">
+        <form action="{% url 'profile' request.user.username %}" method="post">
+            {% csrf_token %}                
+            <input type="text" value="{{ request.path }}" name="redirect" size="30">
             <input type="submit" value="Post djeet" class="btn btn-primary">
         </form>
         <!-- End of form submission code (and nearly end of the file!! ;P -->
