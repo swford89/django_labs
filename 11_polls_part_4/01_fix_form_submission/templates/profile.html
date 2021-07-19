@@ -63,8 +63,8 @@
 
         <!-- TODO: fix the form submission code here -->
         <form action="{% url 'profile' request.user.username %}" method="post">
-            {% csrf_token %}                
-            <input type="text" value="{{ request.path }}" name="redirect" size="30">
+            {% csrf_token %}
+            <textarea name="redirect" id="" value="{{ value|default:'Djeet' }}" cols="30" rows="10"></textarea>                
             <input type="submit" value="Post djeet" class="btn btn-primary">
         </form>
         <!-- End of form submission code (and nearly end of the file!! ;P -->
